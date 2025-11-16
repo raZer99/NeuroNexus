@@ -1,0 +1,8 @@
+id: incident-basic
+steps:
+  - type: notify
+    message: "New ticket triaged. Notifying team..."
+  - type: log
+    message: "Running internal diagnostics..."
+  - type: complete
+    message: "Workflow completed successfully."

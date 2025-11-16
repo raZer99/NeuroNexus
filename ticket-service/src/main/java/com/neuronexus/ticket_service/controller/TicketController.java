@@ -52,8 +52,21 @@ public class TicketController {
         System.out.println(result);
         System.out.println("----------------------------\n");
 
+        // ORCHESTRATOR CALL
+        String ORCH_CALL = "http://localhost:8082/orchestrate/start?workflow=incident-basic";
+
+        String workflowResponse = restTemplate.postForObject(
+                ORCH_CALL,
+                null,
+                String.class
+        );
+
+        System.out.println("🚀 Workflow triggered: " + workflowResponse);
+
         return saved;
     }
+
+
 
     @GetMapping
     public List<Ticket> getAllTickets() {
