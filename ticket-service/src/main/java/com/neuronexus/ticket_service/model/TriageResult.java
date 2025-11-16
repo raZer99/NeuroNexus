@@ -17,5 +17,6 @@ public class TriageResult {
                 ", ownerTeam='" + ownerTeam + '\'' +
                 ", reason='" + reason + '\'' +
                 '}';
+
     }
 }
