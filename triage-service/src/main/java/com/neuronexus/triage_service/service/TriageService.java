@@ -29,6 +29,7 @@ public class TriageService {
             reason = "Issue-related keyword found";
         }
 
+
         if (desc.contains("db")) owner = "db-team";
         else if (desc.contains("network")) owner = "network-team";
         else if (desc.contains("login") || desc.contains("auth")) owner = "auth-team";
