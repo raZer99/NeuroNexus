@@ -7,4 +7,6 @@ import lombok.Data;
 public class WorkflowStep {
     private String type;
     private String message;
+    private String target;
+
 }
