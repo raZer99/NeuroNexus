@@ -46,6 +46,7 @@ public class TicketController {
                 TriageResult.class
         );
 
+
         // 4. Log the triage result
         System.out.println("\n----------------------------");
         System.out.println("TRIAGE RESULT RECEIVED:");
