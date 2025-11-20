@@ -9,6 +9,13 @@ import org.springframework.stereotype.Service;
 public class TriageService {
 
     public TriageResult classify(TriageRequest request) {
+
+        System.out.println("\nTRIAGE SERVICE RECEIVED REQUEST:");
+        System.out.println("Ticket ID: " + request.getTicketId());
+        System.out.println("Title: " + request.getTitle());
+        System.out.println("Description: " + request.getDescription());
+        System.out.println("-------------------------------------");
+
         String desc =  request.getDescription() == null ? "" : request.getDescription().toLowerCase();
         String priority = "P3";
         String owner = "general-support";
@@ -27,11 +34,17 @@ public class TriageService {
         else if (desc.contains("login") || desc.contains("auth")) owner = "auth-team";
         else if (desc.contains("deploy") || desc.contains("ci")) owner = "devops-team";
 
-        return TriageResult.builder()
+        TriageResult result = TriageResult.builder()
                 .ticketId(request.getTicketId())
                 .priority(priority)
                 .ownerTeam(owner)
                 .reason(reason)
                 .build();
+
+        System.out.println("TRIAGE RESULT:");
+        System.out.println(result);
+        System.out.println("-------------------------------------\n");
+
+        return result;
     }
 }
