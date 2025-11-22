@@ -42,7 +42,7 @@ public class WorkflowExecutor {
                 case "deployment":
                     System.out.println(" Calling deployment-service...");
                     Map<String, Object> deployPayload = new HashMap<>();
-                    deployPayload.put("target", step.getType());
+                    deployPayload.put("target", step.getMessage());
 
                     String deployResp = restTemplate.postForObject(
                             "http://localhost:8084/deploy",

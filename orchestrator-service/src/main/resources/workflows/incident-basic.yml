@@ -2,6 +2,8 @@ id: incident-basic
 steps:
   - type: notify
     message: "New ticket triaged. Notifying team..."
+  - type: deployment
+    message: "staging"
   - type: log
     message: "Running internal diagnostics..."
   - type: complete
