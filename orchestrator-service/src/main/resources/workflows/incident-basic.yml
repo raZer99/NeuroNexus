@@ -2,6 +2,8 @@ id: incident-basic
 steps:
   - type: notify
     message: "New ticket triaged. Notifying team..."
+  - type: jira
+    message: "Creating JIRA issue for this incident"
   - type: deployment
     message: "staging"
   - type: log

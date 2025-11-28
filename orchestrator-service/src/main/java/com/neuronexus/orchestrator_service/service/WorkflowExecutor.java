@@ -52,6 +52,21 @@ public class WorkflowExecutor {
                     System.out.println(" Deployment-service responded: " + deployResp);
                     break;
 
+                case "jira":
+                    System.out.println("Calling jira-service...");
+                    Map<String, Object> jiraPayload = new HashMap<>();
+                    jiraPayload.put("title", "Incident: " +template.getId());
+                    jiraPayload.put("description", step.getMessage());
+
+                    String jiraResp = restTemplate.postForObject(
+                            "http://localhost:8085/jira/create",  // new service port
+                            jiraPayload,
+                            String.class
+                    );
+
+                    System.out.println("Jira-service responded: " + jiraResp);
+                    break;
+
                 case "log":
                     System.out.println(" LOG: " + step.getMessage());
                     break;
