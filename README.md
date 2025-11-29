@@ -63,12 +63,7 @@ Stores:
 ## 📦 How It Works (Simple Explanation)
 
 1️⃣ **User sends a ticket**  
-`POST /tickets`
-```json
-{
-  "title": "Deploy request",
-  "description": "please deploy urgent build :::"
-}
+
 
                 +----------------------+
                 |   User / Postman     |
