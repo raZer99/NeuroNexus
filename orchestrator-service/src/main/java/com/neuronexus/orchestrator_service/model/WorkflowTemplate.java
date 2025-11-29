@@ -9,4 +9,5 @@ import java.util.List;
 public class WorkflowTemplate {
     private String id;
     private List<WorkflowStep> steps;
+    private Long tickerId;
 }
