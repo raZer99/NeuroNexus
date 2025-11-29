@@ -65,42 +65,42 @@ Stores:
 1️⃣ **User sends a ticket**
 
 ```ansi
-[96m               +----------------------+[0m
-[96m               |   User / Postman     |[0m
-[96m               |  creates a Ticket    |[0m
-[96m               +----------+-----------+[0m
+                      +----------------------+
+                      |   User / Postman     |
+                      |  creates a Ticket    |
+                      +----------+-----------+
                            |
                            v
-[94m               +-----------------------+[0m
-[94m               |   Ticket Service      |[0m
-[94m               |  stores ticket +      |[0m
-[94m               |  calls triage         |[0m
-[94m               +-----------+-----------+[0m
+                      +-----------------------+
+                      |   Ticket Service      |
+                      |  stores ticket +      |
+                      |  calls triage         |
+                      +-----------+-----------+
                             |
                             v
-[92m               +-----------------------+[0m
-[92m               |    Triage Service     |[0m
-[92m               |  priority + owner     |[0m
-[92m               |  team detection       |[0m
-[92m               +-----------+-----------+[0m
+                      +-----------------------+
+                      |    Triage Service     |
+                      |  priority + owner     |
+                      |  team detection       |
+                      +-----------+-----------+
                             |
                             v
-[93m               +-----------------------+[0m
-[93m               |     Orchestrator      |[0m
-[93m               |  Runs workflow steps: |[0m
-[93m               |   - notify team       |[0m
-[93m               |   - create JIRA       |[0m
-[93m               |   - trigger deploy    |[0m
-[93m               |   - logs + complete   |[0m
-[93m               +-----------+-----------+[0m
-                            |
-     ----------------------------------------------------------------------------------------
-     |                 |                   |                 |                              |
-     v                 v                   v                 v                              v
-[95m+----------------+[0m [95m+----------------+[0m [95m+----------------+[0m [95m+----------------+[0m
-[95m| Notification   |[0m [95m|    JIRA         |[0m [95m| Deployment     |[0m [95m|  Ticket DB     |[0m
-[95m|    Service     |[0m [95m|    Service      |[0m [95m|    Service     |[0m [95m| Workflow DB    |[0m
-[95m+----------------+[0m [95m+----------------+[0m [95m+----------------+[0m [95m+----------------+[0m
+                      +-----------------------+
+                      |     Orchestrator      |
+                      |  Runs workflow steps: |
+                      |   - notify team       |
+                      |   - create JIRA       |
+                      |   - trigger deploy    |
+                      |   - logs + complete   |
+                      +-----------+-----------+
+                                  |
+           --------------------------------------------------------------------------------------
+           |                              |                          |                          |
+           v                              v                          v                          v
+       +----------------+         +----------------+         +----------------+         +----------------+
+       | Notification   |         |    JIRA        |         | Deployment     |         |  Ticket DB     |
+       |    Service     |         |    Service     |         |    Service     |         | Workflow DB    |
+       +----------------+         +----------------+         +----------------+         +----------------+
 
 
 
