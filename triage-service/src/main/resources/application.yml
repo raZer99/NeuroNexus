@@ -4,3 +4,14 @@ server:
 logging:
   level:
     org.springframework.web: INFO
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5437/${DB_NAME:neuronexus_db}
+    username: ${DB_USER:neuronexus}
+    password: ${DB_PASSWORD:devpass}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
