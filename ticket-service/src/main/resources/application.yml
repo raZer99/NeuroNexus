@@ -1,19 +1,18 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:ticketdb
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
+    url: jdbc:postgresql://localhost:5437/${DB_NAME:neuronexus_db}
+    username: ${DB_USER:neuronexus}
+    password: ${DB_PASSWORD:devpass}
+
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
 server:
   port: 8080
 
 logging:
   level:
     org.springframework.web: INFO
+
