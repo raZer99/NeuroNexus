@@ -1,41 +1,116 @@
 # 🚀 NeuroNexus — AI-Powered Workflow Orchestration Platform
 
-**NeuroNexus** is an intelligent, microservices-based automation system that orchestrates IT workflows — from ticket triage and approvals to deployment triggers — using **Spring Boot**, **Spring AI**, **Kafka**, and **PostgreSQL**.
+**NeuroNexus** is a microservices-based automation platform that orchestrates IT workflows end-to-end — from ticket creation and triage to notifications, JIRA creation, deployments, and audit logging.  
+Built using **Spring Boot**, **PostgreSQL**, **Docker**, and clean workflow-driven design.
+
+---
 
 ## 🎯 Objectives
-- Eliminate repetitive manual IT tasks with AI-driven automation.
-- Build scalable, event-driven architecture showcasing SDE-level backend design.
-- Serve as a portfolio-grade project demonstrating AI + microservices integration.
+- Automate repetitive IT operations such as triage, notifications, and deployments.
+- Provide a scalable orchestration system using microservices.
+- Build a real production-style backend project.
+- Demonstrate clean architecture, REST integration, async workflows, and DB auditing.
 
-## 🧩 Planned Architecture
-1. **Ticket Service** – Accepts & stores IT tickets.
-2. **Triage Service** – Classifies ticket priority/owner (Spring AI).
-3. **Orchestrator** – Executes multi-step workflow templates.
-4. **Action Services** – Notifications, approvals, mock deployments.
-5. **Audit DB** – Central event and workflow history.
+---
 
-See detailed docs in [`docs/`](./docs/).
+## 🧩 System Architecture (Planned + Partially Completed)
+
+### **1. Ticket Service (8080)**
+- Accepts user-submitted tickets
+- Stores ticket data in PostgreSQL
+- Triggers the Triage + Orchestrator pipeline
+
+### **2. Triage Service (8081)**
+- Reads ticket description
+- Applies keyword-based "AI-like" logic
+- Returns:
+    - Priority (P1/P2/P3)
+    - Owner team (devops / db / network / auth)
+    - Reason for classification
+
+### **3. Orchestrator Service (8082)**
+Executes workflow templates step-by-step:
+- Notify team
+- Create JIRA (mock)
+- Trigger deployments
+- Add logs
+- Save workflow completion record to DB
+
+### **4. Action Services**
+- **Notification Service (8083)** — mock team notifications
+- **Deployment Service (8084)** — mock CI/CD execution
+- **JIRA Service (8085)** — mock JIRA ticket creation
+
+### **5. Audit Database**
+Stores:
+- Created tickets
+- Completed workflows
+- Workflow status/history
+
+---
 
 ## 🛠 Tech Stack
-Java 17 • Spring Boot 3 • Spring Cloud • Spring AI  
-Kafka / RabbitMQ • PostgreSQL • Docker Compose  
-JUnit 5 • Lombok • Swagger UI
-
-## 🧭 Roadmap
-| Phase | Focus | Duration |
-|--------|--------|----------|
-| Week 1 | Ticket Service MVP | 7 days |
-| Week 2 | Triage Service | 7 days |
-| Week 3 | Orchestrator | 7 days |
-| Week 4 | Action & Audit Services | 7 days |
-| Week 5 | Kafka Integration | 7 days |
-| Week 6 | Spring AI Enhancements | 7 days |
+- **Java 21**
+- **Spring Boot 3**
+- **Spring Web / JPA / Validation**
+- **PostgreSQL + Docker Compose**
+- **Lombok**
+- **RestTemplate-based microservice communication**
+- (🔮 **AI planned** — triage will later be replaced with LLM classification)
 
 ---
 
-## 🧾 Elevator Pitch
-> “Developed **NeuroNexus**, an AI-driven workflow orchestration platform automating IT operations via Spring Boot microservices and event-driven design — reducing manual ops effort by 60 %.”
+## 📦 How It Works (Simple Explanation)
 
----
+1️⃣ **User sends a ticket**  
+`POST /tickets`
+```json
+{
+  "title": "Deploy request",
+  "description": "please deploy urgent build :::"
+}
 
-## 🧱 Repository Layout (Planned)
+                +----------------------+
+                |   User / Postman     |
+                |  creates a Ticket    |
+                +----------+-----------+
+                           |
+                           v
+                +-----------------------+
+                |   Ticket Service      |
+                |  (stores ticket +     |
+                |   calls triage)       |
+                +-----------+-----------+
+                            |
+                            v
+                +-----------------------+
+                |    Triage Service     |
+                |  (priority + owner    |
+                |   team detection)     |
+                +-----------+-----------+
+                            |
+                            v
+                +-----------------------+
+                |   Orchestrator        |
+                |  Runs workflow steps: |
+                |  - notify team        |
+                |  - create JIRA        |
+                |  - trigger deploy     |
+                |  - logs + complete    |
+                +-----------+-----------+
+                            |
+      -------------------------------------------------
+      |                  |                 |          |
+      v                  v                 v          v
++----------------+ +----------------+ +----------------+ +----------------+
+| Notification |        | JIRA |        | Deployment |      | Ticket DB |
+| Service |           | Service |        | Service |       | Workflow DB |
++----------------+ +----------------+ +----------------+ +----------------+
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
