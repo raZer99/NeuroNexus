@@ -21,6 +21,6 @@ public class OrchestratorController {
     public String startWorkflow(@RequestParam String workflow) {
         WorkflowTemplate template = loader.loadTemplate(workflow);
         executor.execute(template);
-        return "Workflow '" + workflow + "' exected successfully!";
+        return "Workflow '" + workflow + "' exected successfully !!";
     }
 }
